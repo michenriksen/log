@@ -12,10 +12,8 @@ import (
 	"time"
 )
 
-var (
-	// ErrMissingValue is returned when a key is missing a value.
-	ErrMissingValue = fmt.Errorf("missing value")
-)
+// ErrMissingValue is returned when a key is missing a value.
+var ErrMissingValue = fmt.Errorf("missing value")
 
 // LoggerOption is an option for a logger.
 type LoggerOption = func(*logger)
@@ -279,6 +277,13 @@ func (l *logger) SetFormatter(f Formatter) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	l.formatter = f
+}
+
+// SetNoStyles sets wether the logger should use styles.
+func (l *logger) SetNoStyles(noStyles bool) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	l.noStyles = noStyles
 }
 
 // With returns a new logger with the given keyvals added.

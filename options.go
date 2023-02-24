@@ -68,3 +68,10 @@ func WithFormatter(f Formatter) LoggerOption {
 		l.formatter = f
 	}
 }
+
+// WithNoStyles returns a LoggerOption that disables styles for the logger.
+func WithNoStyles() LoggerOption {
+	return func(l *logger) {
+		l.noStyles = true
+	}
+}
